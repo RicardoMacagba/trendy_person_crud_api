@@ -16,33 +16,38 @@ class Job extends Model
         'description',
         'budget',
         'location',
+        'status',
         // 'start_date',
         // 'end_date',
         // 'status',
     ];
     public function homeowner()
-{
-return $this->belongsTo(User::class, 'homeowner_id');
-}
-public function applications()
-{
-return $this->hasMany(JobApplication::class);
-}
-public function messages()
-{
-return $this->hasMany(Message::class);
-}
-public function payments()
-{
-return $this->hasMany(Payment::class);
-}
-public function ratings()
-{
-return $this->hasMany(Rating::class);
-}
-public function appointments()
-{
-return $this->hasMany(Appointment::class);
-}
+    {
+        return $this->belongsTo(User::class, 'homeowner_id');
+    }
 
+    public function applications()
+    {
+        return $this->hasMany(JobApplication::class);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
 }

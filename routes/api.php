@@ -31,9 +31,12 @@ use App\Http\Controllers\AppointmentController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 // Route::post('/verify-otp', [AuthController::class, 'verifyOtp']);
+
+
+
+//with middleware auth:sanctum, the user must be authenticated to access the routes
 Route::middleware('auth:sanctum')->group(function () {
 Route::post('/logout', [AuthController::class, 'logout']);
-
 
 // Jobs
 Route::get('/jobs', [JobController::class, 'index']);
@@ -59,7 +62,7 @@ Route::post('/ratings/{job}', [RatingController::class, 'store']);
 Route::post('/appointments', [AppointmentController::class, 'store']);
 Route::put('/appointments/{appointment}', [AppointmentController::class, 'update']);
 
-// Admin routes
+// Admin routes with middleware auth:sanctum and role admin
 Route::middleware('auth:sanctum')->group(function () {
 Route::get('/admin/users', [AdminController::class, 'users']);
 Route::get('/admin/jobs', [AdminController::class, 'jobs']);

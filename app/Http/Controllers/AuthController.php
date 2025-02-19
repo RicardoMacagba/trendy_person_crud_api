@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -48,8 +47,15 @@ class AuthController extends Controller
         ]);
     }
 
+
+    //login
     public function login(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string'
+        ]);
+
         if (Auth::attempt($request->only('email', 'password'))) {
             return response()->json([
                 'token' => $request->user()->createToken('api')->plainTextToken,
@@ -62,6 +68,8 @@ class AuthController extends Controller
         ], 401);
     }
 
+
+    //logout
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();

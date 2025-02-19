@@ -22,10 +22,11 @@ class User extends Authenticatable
     protected $fillable = [
         'email',
         'password',
+        'role',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for arrays.
      *
      * @var list<string>
      */
@@ -58,22 +59,27 @@ class User extends Authenticatable
     {
         return $this->hasMany(Job::class, 'homeowner_id');
     }
+
     public function applications()
     {
         return $this->hasMany(JobApplication::class, 'tradie_id');
     }
+
     public function sentMessages()
     {
         return $this->hasMany(Message::class, 'sender_id');
     }
+
     public function receivedMessages()
     {
         return $this->hasMany(Message::class, 'receiver_id');
     }
+
     public function ratingsReceived()
     {
         return $this->hasMany(Rating::class, 'rated_user_id');
     }
+    
     public function appointments()
     {
         return $this->hasMany(Appointment::class, 'tradie_id');

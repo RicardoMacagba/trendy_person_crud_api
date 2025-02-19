@@ -35,9 +35,11 @@ class JobPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Job $job): bool
+    public function update(User $user, Job $job): Response
     {
-        return false;
+        return $user->id === $job->homeowner_id
+            ? Response::allow()
+            : Response::deny('You do not own this job.');
     }
 
     /**
@@ -45,7 +47,8 @@ class JobPolicy
      */
     public function delete(User $user, Job $job): bool
     {
-        return false;
+        //delete home owner's job
+        return $user->id === $job->homeowner_id || $user->role === 'admin'; // or $user->isAdmin()
     }
 
     /**

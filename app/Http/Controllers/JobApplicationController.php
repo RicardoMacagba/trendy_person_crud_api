@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\JobApplication;
-use App\Http\Requests\StoreJobApplicationRequest;
-use App\Http\Requests\UpdateJobApplicationRequest;
+use Illuminate\Http\Request;
 
 class JobApplicationController extends Controller
 {
@@ -19,7 +18,7 @@ class JobApplicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreJobApplicationRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -35,7 +34,7 @@ class JobApplicationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateJobApplicationRequest $request, JobApplication $jobApplication)
+    public function update(Request $request, JobApplication $jobApplication)
     {
         //
     }
