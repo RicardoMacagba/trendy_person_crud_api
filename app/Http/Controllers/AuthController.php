@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
@@ -28,6 +29,7 @@ class AuthController extends Controller
             'password' => bcrypt($validated['password']),
             'role' => $validated['role']
         ]);
+        
 
         $user->profile()->create([
             'first_name' => $validated['first_name'],

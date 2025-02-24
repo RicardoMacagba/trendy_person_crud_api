@@ -84,4 +84,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Appointment::class, 'tradie_id');
     }
+
+    //function for car
+    public function cars()
+    {
+        return $this->hasMany(Car::class);
+    }
 }

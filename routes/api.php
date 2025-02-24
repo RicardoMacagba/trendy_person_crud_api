@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
@@ -62,6 +63,12 @@ Route::post('/ratings/{job}', [RatingController::class, 'store']);
 Route::post('/appointments', [AppointmentController::class, 'store']);
 Route::put('/appointments/{appointment}', [AppointmentController::class, 'update']);
 
+//creating a route for car
+Route::post('/makeCar', [CarController::class, 'store']);
+Route::get('/getCar', [CarController::class, 'index']);
+Route::get('/showCar/{car}', [CarController::class, 'show']);
+Route::put('/updateCar/{car}', [CarController::class, 'update']);
+
 // Admin routes with middleware auth:sanctum and role admin
 Route::middleware('auth:sanctum')->group(function () {
 Route::get('/admin/users', [AdminController::class, 'users']);
@@ -70,3 +77,14 @@ Route::put('/admin/jobs/{job}/resolve', [AdminController::class, 'resolveJob']);
 
 });
 });
+
+//making a car api
+// Route::post('/makeCar', [CarController::class, 'store']);
+// Route::get('/getCar', [CarController::class, 'index']);
+// Route::get('/showCar/{car}', [CarController::class, 'show']);
+// Route::put('/updateCar/{car}', [CarController::class, 'update']);
+// Route::delete('/deleteCar/{car}', [CarController::class, 'destroy'])->middleware('auth:sanctum');
+
+// Route::middleware('/makeCar')->group(function () {
+//     Route::post('/makeCar', [CarController::class, 'storeCar']);
+// });
